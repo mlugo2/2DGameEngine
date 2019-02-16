@@ -24,7 +24,7 @@ gEngine.Core = (function() {
     }
 
     // Now initialize the VertexBuffer
-    gEngine.VertexBuffer.initialize();
+    gEngine.Engine_VertexBuffer.initialize();
   };
 
   // Clears the draw area and draws one square

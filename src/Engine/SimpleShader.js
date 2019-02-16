@@ -27,7 +27,7 @@ function SimpleShader (vertexShaderID, fragmentShaderID) {
   // Step D: Gets a reference to the aSquareVertexPosition attribute
   this.mShaderVertexPositionAttribute = gl.getAttribLocation(this.mCompiledShader, "aSquareVertexPosition");
   // Step E: Activates the vertex buffer loaded in Engine.Core_VertexBuffer
-  gl.bindBuffer(gl.ARRAY_BUFFER, gEngine.VertexBuffer.getGLVertexRef());
+  gl.bindBuffer(gl.ARRAY_BUFFER, gEngine.Engine_VertexBuffer.getGLVertexRef());
   // Step F: Describe the characteristic of the vertex position attribute
   gl.vertexAttribPointer(this.mShaderVertexPositionAttribute,
     3,

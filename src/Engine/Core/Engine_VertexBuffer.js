@@ -3,7 +3,7 @@
 var gEngine = gEngine || {};
 
 // The VertexBuffer object
-gEngine.VertexBuffer = (function() {
+gEngine.Engine_VertexBuffer = (function() {
   // First: define the vertices for a square
   var verticesOfSquare = [
     0.5, 0.5, 0.0,
