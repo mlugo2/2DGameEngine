@@ -2,11 +2,12 @@ function SimpleShader (vertexShaderID, fragmentShaderID) {
   // instance variables (Convention: all instance variables: mVariables)
   this.mCompiledShader = null;  // reference to the compiled shader in webgl context
   this.mShaderVertexPositionAttribute = null; // reference to SquareVertexPosition in mShaderVertexPositionAttribute
+  this.mPixelColor = null;  // reference to the pixelColor uniform in the fragment shader
 
   var gl = gEngine.Core.getGL();
 
   // start of constructor code
-
+  //
   // Step A: load and complile vertex and fragment shaders
   var vertexShader = this._loadAndCompileShader(vertexShaderID, gl.VERTEX_SHADER);
   var fragmentShader = this._loadAndCompileShader(fragmentShaderID, gl.FRAGMENT_SHADER);
@@ -34,6 +35,8 @@ function SimpleShader (vertexShaderID, fragmentShaderID) {
     false,
     0,
     0);
+  // Step G: Gets a reference to the uniform variable uPixelColor in the fragment shader
+  this.mPixelColor = gl.getUniformLocation(this.mCompiledShader, "uPixelColor");
 }
 
 // Returns a compiled shader from a shader in the dom.
@@ -76,10 +79,11 @@ SimpleShader.prototype._loadAndCompileShader = function (filePath, shaderType) {
   return compiledShader;
 };
 
-SimpleShader.prototype.activateShader = function() {
+SimpleShader.prototype.activateShader = function(pixelColor) {
   var gl = gEngine.Core.getGL();
   gl.useProgram(this.mCompiledShader);
   gl.enableVertexAttribArray(this.mShaderVertexPositionAttribute);
+  gl.uniform4fv(this.mPixelColor, pixelColor);
 };
 
 SimpleShader.prototype.getShader = function() { return this.mCompiledShader; };
