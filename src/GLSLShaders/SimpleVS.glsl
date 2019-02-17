@@ -1,7 +1,9 @@
 attribute vec3 aSquareVertexPosition;  // Vertex shader expects one vertex position
+// to transform the vertex position
+uniform mat4 uModelTransform;
 
 void main(void) {
     // Convert the vec3 into vec4 for scan conversion and
     // assign to gl_Position to pass the vertex to the fragment shader
-    gl_Position = vec4(aSquareVertexPosition, 1.0);
+    gl_Position = uModelTransform * vec4(aSquareVertexPosition, 1.0);
 }

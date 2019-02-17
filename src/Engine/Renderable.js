@@ -1,11 +1,12 @@
 function Renderable(shader) {
   this.mShader = shader;      // the shader for shading this object
-  this.mColor = [1, 1, 1, 1]  // Color for fragment shader
+  this.mColor = [1, 1, 1, 1];  // Color for fragment shader
 }
 
-Renderable.prototype.draw = function() {
+Renderable.prototype.draw = function(modelTransform) {
   var gl = gEngine.Core.getGL();
   this.mShader.activateShader(this.mColor);
+  this.mShader.loadObjectTransform(modelTransform);
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 };
 
